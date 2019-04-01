@@ -26,7 +26,7 @@ namespace SingleMonitor.Views
             BindingContext = new MainVM();
         }
 
-        private void StartFaultTracking()
+        private async void StartFaultTracking()
         {
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
@@ -55,8 +55,7 @@ namespace SingleMonitor.Views
                 return true;
             });
         }
-
-
+        
         private void CanIRun()
         {
             
@@ -72,9 +71,11 @@ namespace SingleMonitor.Views
 
         private async void ThereIsFaultDropIn()
         {
-            animationActiveFaultView.Animation = faultAnimation;
-            await animationActiveFaultView.TranslateTo(0, 30);
             faultLogButtonRep.IsVisible = false;
+            animationActiveFaultView.Animation = faultAnimation;
+            timerRep.IsVisible = true;
+            faultRestoreButtonRep.IsVisible = true;
+            await animationActiveFaultView.TranslateTo(0, 30);
             await timerRep.TranslateTo(0, -50, 800);
             await timerRep.TranslateTo(0, 0, 2000, Easing.BounceOut);
         }
