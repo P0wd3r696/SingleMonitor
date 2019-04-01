@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="SingleMonitor.Views.MainPage">
+
+    <ContentPage.Content>
+
+        <Grid Padding="18,20"
+              x:Name="redFaultGrid">
+            <Label x:Name="statusRep"
+                Grid.Row="0" Grid.ColumnSpan="1"
+                Text="STATUS"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                FontSize="15"/>
+            <forms:AnimationView x:Name="animationActiveFaultView"
+                                 Loop="True"
+                                 AutoPlay="True"
+                                 HeightRequest="100"
+                                 WidthRequest="100"/>
+            <Grid x:Name="timerRep"
+                Grid.Row="1"
+                RowSpacing="0"
+                Margin="24, 24">
+
+                <Label 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="{Binding Hours, StringFormat='{0:D2}'}"
+                    FontSize="30"/>
+                <Label 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Text="hours"/>
+                <Label 
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Text=":"
+                    FontSize="30"/>
+                <Label 
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    Text="{Binding Minutes, StringFormat='{0:D2}'}"
+                    FontSize="30"/>
+                <Label
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Text="minutes"/>
+                <Label 
+                    Grid.Column="3"
+                    Grid.Row="0"
+                    Text=":"
+                    FontSize="30"/>
+                <Label
+                    x:Name="secondsCounter"
+                    Grid.Column="4"
+                    Grid.Row="0"
+                    Text="{Binding Seconds, StringFormat='{0:D2}'}"
+                    FontSize="30"/>
+                <Label 
+                    Grid.Column="4"
+                    Grid.Row="1"
+                    Text="seconds"/>
+            </Grid>
+            <StackLayout
+                Grid.Row="2"
+                Margin="0, 0, 0, 48">
+                <Grid x:Name="faultRestoreButtonRep"
+                    Margin="84, 12">
+                    <Button Text="Fault Restored"
+                            BorderRadius="50"
+                            BackgroundColor="LimeGreen"
+                            TextColor="White"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                           Command="{Binding ResolvedFaultCommand}"/>
+                </Grid>
+            </StackLayout>
+            <StackLayout 
+                Grid.Row="2"
+                Margin="0, 0, 0, 48">
+                <Grid x:Name="faultLogButtonRep"
+                    Margin="84, 12">
+                    <Button Text="Log Fault"
+                            BorderRadius="50"
+                            WidthRequest="200"
+                            BackgroundColor="DeepPink"
+                            TextColor="White"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                           Command="{Binding DisplayNewFaultPopupCommand}"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

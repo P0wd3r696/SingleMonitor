@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="SingleMonitor.Views.LogFaultPopUpView">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True"
+                                   PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="2.2"
+                                   ScaleOut="0.8"/>
+    </pages:PopupPage.Animation>
+
+    <StackLayout Margin="12"
+                 Padding="30"
+                 HeightRequest="300"
+                 WidthRequest="250"
+                 BackgroundColor="White"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center">
+        <StackLayout>
+            <Label Text="Area :"
+                   FontSize="15"/>
+            <Picker SelectedItem="{Binding AreaName, Mode=TwoWay}"
+                    ItemsSource="{Binding EquipName}"
+                    FontSize="15">
+            </Picker>
+        </StackLayout>
+        <StackLayout>
+            <Label Text="Reason :"
+                   FontSize="15"/>
+            <Picker SelectedItem="{Binding FaultReason, Mode=TwoWay}"
+                    ItemsSource="{Binding Reasons}"
+                    FontSize="15">
+            </Picker>
+        </StackLayout>
+
+        <StackLayout>
+            <Button Text="Log Fault"
+                    BackgroundColor="DeepPink"
+                    BorderRadius="50"
+                    FontSize="15"
+                    TextColor="White"
+                    WidthRequest="300"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,60,0,5"
+                    x:Name="handleClicked"
+                    Command="{Binding LogNewFaultCommand}"/>
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>
